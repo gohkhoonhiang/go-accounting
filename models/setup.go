@@ -37,7 +37,12 @@ func ConnectDatabase() {
 		panic("Failed to connect to database!")
 	}
 
-	err = db.AutoMigrate(&Budget{})
+	err = db.AutoMigrate(
+		&User{},
+		&SavingsAccount{}, &ExpenseAccount{}, &AccountOwner{},
+		&Budget{}, &BudgetLine{},
+	)
+
 	if err != nil {
 		return
 	}
