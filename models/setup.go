@@ -37,5 +37,10 @@ func ConnectDatabase() {
 		panic("Failed to connect to database!")
 	}
 
+	err = db.AutoMigrate(&Budget{})
+	if err != nil {
+		return
+	}
+
 	DB = db
 }
