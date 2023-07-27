@@ -40,6 +40,7 @@ func ConnectDatabase() {
 	err = db.AutoMigrate(
 		&User{},
 		&SavingsAccount{}, &ExpenseAccount{}, &AccountOwner{},
+		&AccountBucket{}, &Asset{},
 		&Budget{}, &BudgetLine{},
 	)
 
