@@ -41,7 +41,11 @@ func ConnectDatabase() {
 		&User{},
 		&SavingsAccount{}, &ExpenseAccount{}, &AccountOwner{},
 		&AccountBucket{}, &Asset{},
+		&AccountTransaction{}, &ExpenseTransaction{},
 		&Budget{}, &BudgetLine{},
+		&StockBrokerageAccount{}, &StockBrokerageAccountFee{},
+		&StockHolding{}, &StockPrice{}, &StockDividend{},
+		&StockPurchaseOrder{}, &StockSaleOrder{},
 	)
 
 	if err != nil {
