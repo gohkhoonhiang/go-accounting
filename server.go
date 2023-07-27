@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/go-accounting/controllers"
 	"github.com/go-accounting/models"
@@ -15,7 +16,10 @@ func main() {
 
 	models.ConnectDatabase()
 
-	r.GET("/", func(c *gin.Context) {
+	r.Use(static.Serve("/", static.LocalFile("./assets", true)))
+	r.Use(static.Serve("/favicon.ico", static.LocalFile("./assets/favicon.ico", true)))
+
+	r.GET("/hello", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"data": "hello world"})
 	})
 
