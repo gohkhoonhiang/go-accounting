@@ -21,6 +21,6 @@ type TimesheetLine struct {
 	gorm.Model
 	EntryDate    time.Time `json:"entryDate" gorm:"not null"`
 	ClockedHours float64   `json:"clockedHours" gorm:"default:0;not null"`
-	TimesheetId  uint      `json:"budgetId" gorm:"not null"`
+	TimesheetID  uint      `json:"budgetId" gorm:"not null"`
 	Timesheet    Timesheet `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }

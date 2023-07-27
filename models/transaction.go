@@ -8,17 +8,15 @@ import (
 
 type AccountTransaction struct {
 	gorm.Model
-	ID              uint          `json:"id" gorm:"primary_key"`
 	Description     string        `json:"description" gorm:"not null"`
 	TransactionDate time.Time     `json:"transactionDate" gorm:"not null"`
 	Amount          float64       `json:"amount" gorm:"not null"`
-	AccountBucketId uint          `json:"accountBucketId" gorm:"not null"`
+	AccountBucketID uint          `json:"accountBucketId" gorm:"not null"`
 	AccountBucket   AccountBucket `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }
 
 type ExpenseTransaction struct {
 	gorm.Model
-	ID               uint           `json:"id" gorm:"primary_key"`
 	Description      string         `json:"description" gorm:"not null"`
 	TransactionDate  time.Time      `json:"transactionDate" gorm:"not null"`
 	Amount           float64        `json:"amount" gorm:"not null"`
@@ -28,6 +26,6 @@ type ExpenseTransaction struct {
 	PaidDate         time.Time      `json:"paidDate"`
 	Allocated        bool           `json:"allocated" gorm:"default:false;not null"`
 	AllocatedDate    time.Time      `json:"allocatedDate"`
-	ExpenseAccountId uint           `json:"expenseAccountId" gorm:"not null"`
+	ExpenseAccountID uint           `json:"expenseAccountId" gorm:"not null"`
 	ExpenseAccount   ExpenseAccount `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }
