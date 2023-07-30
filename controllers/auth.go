@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"log"
 	"net/http"
 	"os"
 	"time"
@@ -104,9 +105,9 @@ func InitAuthMiddleware() (*jwt.GinJWTMiddleware, error) {
 		},
 
 		Unauthorized: func(c *gin.Context, code int, message string) {
+			log.Println(message)
 			c.JSON(code, gin.H{
-				"code":    code,
-				"message": message,
+				"error": "Invalid credentials",
 			})
 		},
 

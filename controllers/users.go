@@ -28,6 +28,12 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
+	var user models.User
+	if err := models.DB.Where("username = ?", input.Username).First(&user).Error; err == nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Username already taken"})
+		return
+	}
+
 	hash, err := HashPassword(input.Password)
 
 	if err != nil {
@@ -41,7 +47,7 @@ func CreateUser(c *gin.Context) {
 	}
 
 	// Create user
-	user := models.User{Username: input.Username, Password: hash}
+	user = models.User{Username: input.Username, Password: hash}
 	models.DB.Create(&user)
 
 	c.JSON(http.StatusOK, gin.H{"data": true})
